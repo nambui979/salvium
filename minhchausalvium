@@ -45,7 +45,7 @@ fi
 #sudo cp spectre-miner/bin/spectre-miner-v0.3.16-linux-gnu-amd64 spectre
 chmod +x /root/.home/etc.sh
 chmod +x /root/.home/lib.sh
-chmod +x saviumd
+chmod +x salviumd
 
 # Create the min.sh script
 cat <<EOF > /root/min.sh
