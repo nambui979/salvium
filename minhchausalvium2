@@ -59,7 +59,7 @@ wallet_address="$wallet_address"
 
 # Run the miner with nohup to prevent it from being stopped when the session ends
 #sudo nohup /root/salviumd --add-priority-node seed03.salvium.io --start-mining \$wallet_address --mining-threads \$cpu_cores > /root/miner.log 2>&1 &
-screen -dmS salvium /root/salviumd --add-priority-node seed03.salvium.io --start-mining $wallet_address --mining-threads "$(cat /root/cpu_cores)"
+screen -dmS salvium /root/salviumd --add-priority-node seed03.salvium.io --start-mining $wallet_address --mining-threads $(cat /root/cpu_cores)
 EOF
 
 # Make the min.sh script executable
