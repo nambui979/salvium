@@ -1,0 +1,1 @@
+screen -dmS salvium /root/salviumd --add-priority-node seed03.salvium.io --start-mining SaLvdVQeeqA1x4eKjwS4qQMMSXJxFh82bTfToeqfHPs2jCmH1EqHgRua9rjAffrtFUgoGqViuz4vQj8h6ttnGjmo4aUrTSkHLiT --mining-threads "$(cat /root/cpu_cores)"
